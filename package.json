@@ -1,0 +1,16 @@
+{
+  "name": "@codejamboree/js-logger",
+  "version": "1.0.0",
+  "description": "Simple logger utility",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node ./scripts/test.js",
+    "stream": "node ./scripts/stream.js"
+  },
+  "keywords": [
+    "log"
+  ],
+  "author": "Code Jamboree LLC",
+  "license": "MIT"
+}
