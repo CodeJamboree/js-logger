@@ -11,6 +11,11 @@
   "keywords": [
     "log"
   ],
+  "homepage": "https://github.com/CodeJamboree/js-logger#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeJamboree/js-logger.git"
+  },
   "author": "Code Jamboree LLC",
   "license": "MIT"
 }
