@@ -3,11 +3,15 @@ import { timeLog } from './timeLog.js';
 import { expect, standardUtils, processUtils } from '@codejamboree/js-test';
 import { log } from '../log/log.js';
 
+export const beforeEach = () => {
+  standardUtils.spyAndHide();
+  processUtils.freeze();
+}
 export const afterEach = () => {
+  standardUtils.restore();
   processUtils.restore();
 }
 export const timeLogWritesCyanStamp = () => {
-  processUtils.freeze();
   const label = 'testing time log';
   time(label);
   timeLog(label);

@@ -3,11 +3,15 @@ import { timeEnd } from './timeEnd.js';
 import { expect, standardUtils, processUtils } from '@codejamboree/js-test';
 import { log } from '../log/log.js';
 
+export const beforeEach = () => {
+  standardUtils.spyAndHide();
+  processUtils.freeze();
+}
 export const afterEach = () => {
+  standardUtils.restore();
   processUtils.restore();
 }
 export const timeEndWritesCyanStamp = () => {
-  processUtils.freeze();
   const label = 'testing time end';
   time(label);
   timeEnd(label);

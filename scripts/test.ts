@@ -6,18 +6,8 @@ const main = async () => {
   await run({
     testFilePattern: /\.test\.js$/,
     testFileReplacement: '',
-    folderPath: 'build/src',
-    beforeEach,
-    afterEach,
+    folderPath: 'build/src'
   })
-}
-
-const beforeEach = () => {
-  standardUtils.clearCaptured();
-  standardUtils.spyAndHide();
-}
-const afterEach = () => {
-  standardUtils.restore();
 }
 
 try {
