@@ -1,5 +1,5 @@
 import { logger } from '../src/index.js';
-import { run, standardUtils } from '@codejamboree/js-test';
+import { run } from '@codejamboree/js-test';
 
 const main = async () => {
 
