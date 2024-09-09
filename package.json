@@ -1,6 +1,6 @@
 {
   "name": "@codejamboree/js-logger",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Simple logger utility",
   "type": "module",
   "main": "dist/commonjs/index.min.cjs",
