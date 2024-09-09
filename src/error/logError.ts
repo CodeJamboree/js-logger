@@ -14,7 +14,7 @@ export const logError = (data: any) => {
       error(data);
       break;
     case 'object':
-      logObjectAsError(data);
+      logObjectAsError(data, logError);
       break;
     case 'boolean':
     case 'number':

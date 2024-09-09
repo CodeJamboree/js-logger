@@ -1,12 +1,11 @@
 import { logDetails } from "./logDetails.js";
 import { logObjectKeysOfInterest } from "./logObjectKeysOfInterest.js";
-import { logError } from "./logError.js";
 import { logObjectKeysAsError } from './logObjectKeysAsError.js';
 import { error } from '../log/error.js';
 import { group } from '../group/group.js';
 import { groupEnd } from "../group/groupEnd.js";
 
-export const logObjectAsError = (obj: object) => {
+export const logObjectAsError = (obj: object, logError: (data: any) => void) => {
 
   if (obj instanceof Date) {
     error(`Error (Date): ${obj.toISOString()}`);
@@ -33,7 +32,7 @@ export const logObjectAsError = (obj: object) => {
     return;
   }
 
-  if (!logObjectKeysAsError(obj)) {
+  if (!logObjectKeysAsError(obj, logError)) {
     error("Error (Object)");
     logDetails(obj);
   }
