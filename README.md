@@ -2,6 +2,10 @@
 
 Simple logger utility that adds some color to the console, formatting, and error logging. The same common functions were being used on small utility scripts. Eventually they were separated for reusability accross projects.
 
+```bash
+npm install @codejamboree/js-logger
+```
+
 ```js
 import logger from '@codejamboree/js-logger';
 logger.debug('hello'); // log magenta
@@ -69,49 +73,49 @@ logger.done();
 ```
 ## Error Logging
 
-The logger has an onError handler which can accept errors, objects, arrays, strings, promises, buffers, and more. An attempt has been made to handle just about any type of data and log it appropriately.
+The logger has a logError method which can accept errors, objects, arrays, strings, promises, buffers, and more. An attempt has been made to handle just about any type of data and log it appropriately.
 
 ```js
-logger.onError(new Error('The Error'));
+logger.logError(new Error('The Error'));
 // The Error
-logger.onError('The string error');
+logger.logError('The string error');
 // The string error
-logger.onError(['Error 1', 'Error 2']);
+logger.logError(['Error 1', 'Error 2']);
 // Error (Array)
 //   Error 1
 //   Error 2
-logger.onError({error: 'The error key'});
+logger.logError({error: 'The error key'});
 // The error key
 // NOTE: same for keys: errors, message, message, reason, reasons
-logger.onError(Buffer.from('The buffer error'));
+logger.logError(Buffer.from('The buffer error'));
 // The buffer error
-logger.onError(Promise.resolve('The resolved value'));
+logger.logError(Promise.resolve('The resolved value'));
 // Error (Promise)
 // The resolved value
-logger.onError(Promise.reject('The rejected value'));
+logger.logError(Promise.reject('The rejected value'));
 // Error (Promise)
 // The rejected value
-logger.onError(1); 
+logger.logError(1); 
 // Error: 1
-logger.onError(false); 
+logger.logError(false); 
 // Error: false
-logger.onError(new Date()); 
+logger.logError(new Date()); 
 // Error (Date): 2024-08-31T05:50:06.145Z
-logger.onError({unrecognized: 'The unknown value'});
+logger.logError({unrecognized: 'The unknown value'});
 // Error (Object)
 //   { unrecognized: 'The unknown value' }
-logger.onError(null);
+logger.logError(null);
 // Error (Empty)
-logger.onError(undefined);
+logger.logError(undefined);
 // Error (Empty)
-logger.onError("");
+logger.logError("");
 // Error (Empty)
 ```
 
 If an error has some specific keys, they will be listed as well. Specifically, these are `data` and `rawPacket`.
 
 ```js
-logger.onError({
+logger.logError({
   error: 'The Error',
   data: 'the data',
   rawPacket: Buffer.from("Hello")
@@ -123,13 +127,14 @@ logger.onError({
 
 ## Console
 
-The logger is the console. You can call either the logger or the console. The console functions (log, debug, error, etc.) have been wrapped to apply color.
+The logger is separat from the console, but has many of the same method names. You can override the consoles methods (debug, info, timeStamp, timeEnd) to apply color.
 
 ```js
-logger.debug('foo'); // writes "foo" in magenta
+console.debug('foo'); // writes foo in white
+logger.attach();
 console.debug('foo'); // writes "foo" in magenta
-
-console.title('hello'); // writes centered title
+logger.restore();
+console.debug('foo'); // writes foo in white
 ```
 
 ## Ideal Script
@@ -142,12 +147,13 @@ const main = async () => {
 }
 
 try {
+  logger.attach();
   logger.title('Script Name');
   main()
-    .catch(logger.onError)
+    .catch(logger.logError)
     .finally(logger.done);
 } catch (e) {
-  logger.onError(e);
+  logger.logError(e);
   logger.done();
 }
 ```
