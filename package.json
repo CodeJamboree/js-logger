@@ -17,5 +17,8 @@
     "url": "git+https://github.com/CodeJamboree/js-logger.git"
   },
   "author": "Code Jamboree LLC",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@codejamboree/js-test": "^2.2.2"
+  }
 }

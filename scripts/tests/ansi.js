@@ -1,5 +1,5 @@
 import logger from '../../src/index.js';
-import { expect } from './utils/expect.js';
+import { expect } from '@codejamboree/js-test';
 
 const { ansi } = logger;
 
