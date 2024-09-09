@@ -1,4 +1,4 @@
-export const isEmpty = value => {
+export const isEmpty = (value: any): boolean => {
   if (value === undefined || value === null) return true;
   switch (typeof value) {
     case 'string':

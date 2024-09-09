@@ -18,18 +18,18 @@ const bgCyan = 46;
 const bgWhite = 47;
 const bgNormal = 49;
 
-const escape = code => `\x1b[${code}m`;
+const escape = (code: number) => `\x1b[${code}m`;
 
-const isFgColor = code => code >= 30 && code <= 39;
+const isFgColor = (code: number) => code >= 30 && code <= 39;
 
-const colorize = (code) => (message) => {
+const colorize = (code: number) => (message: string) => {
   let endCode = isFgColor(code) ? fgNormal : bgNormal;
   const open = escape(code);
   const close = escape(endCode);
   message = overrideClosers(open, message, close);
   return `${open}${message}${close}`;
 }
-const overrideClosers = (open, message, close) => {
+const overrideClosers = (open: string, message: string, close: string) => {
   let i = message.lastIndexOf(close)
   if (i === -1) return message;
   const matches = Array.from(message.matchAll(/([^\x1b]*)(\x1b\[\d+[^m]*m)?/g));

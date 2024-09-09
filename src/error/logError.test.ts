@@ -14,10 +14,17 @@ export const normalError = () => {
     ["\u001b[31mTest Error\u001b[39m\n"]
   );
 }
+class InterestingError extends Error {
+  data: string;
+  rawPacket: string;
+  constructor(message: string, data: string, rawPacket: string) {
+    super(message);
+    this.data = data;
+    this.rawPacket = rawPacket;
+  }
+}
 export const interestingData = () => {
-  const error = new Error("Test Error");
-  error.data = 'my data';
-  error.rawPacket = 'my raw packet';
+  const error = new InterestingError("Test Error", 'my data', 'my raw packet');
   logError(error);
   expect(standardUtils.writes()).equals([
     "\u001b[31mTest Error\u001b[39m\n",

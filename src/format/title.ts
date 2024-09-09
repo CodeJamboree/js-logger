@@ -10,4 +10,4 @@ export const title = (title = '') => {
   info(line);
 }
 
-const writeLine = line => info(line);
+const writeLine = (line: string) => info(line);

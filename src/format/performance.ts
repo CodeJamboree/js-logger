@@ -6,6 +6,6 @@ export const runningTimeLabel = 'Running time';
 
 time(runningTimeLabel);
 
-export const logPerformance = (...args) => {
-  timeLog(runningTimeLabel, ...args);
+export const performance = () => {
+  timeLog(runningTimeLabel);
 }

@@ -12,12 +12,14 @@ const errorKeys = [
   'messages'
 ];
 
-export const logObjectKeysAsError = obj => {
+export const logObjectKeysAsError = (obj: NonNullable<object>) => {
   return errorKeys.some(showKeyAsError(obj));
 }
 
-const showKeyAsError = obj => key => {
-  let value = obj[key];
+const showKeyAsError = (obj: NonNullable<Record<string, any>>) => (key: string) => {
+  if (!(key in obj)) return;
+
+  let value: any = obj[key];
   if (isEmpty(value)) return false;
   if (Array.isArray(value)) {
     value.filter(isNotEmpty).forEach(logError);

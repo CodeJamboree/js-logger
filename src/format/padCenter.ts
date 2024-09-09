@@ -1,6 +1,6 @@
 import { lineWidth } from "./lineWidth.js";
 
-export const padCenter = (text, width = lineWidth, fillString = ' ') => {
+export const padCenter = (text: string, width = lineWidth, fillString = ' '): string => {
   text = text.trim();
   const length = text.length;
   if (length === width) return text;
@@ -11,7 +11,7 @@ export const padCenter = (text, width = lineWidth, fillString = ' ') => {
     return Array.from(matches)
       .map(match => match[0])
       .reduce(buildLines(width), [])
-      .map(line => padCenter(line, width)).join('\n');
+      .map((line: string) => padCenter(line, width)).join('\n');
   }
 
   const half = width / 2;
@@ -20,7 +20,7 @@ export const padCenter = (text, width = lineWidth, fillString = ' ') => {
   return text.padStart(indent + length, fillString).padEnd(width, fillString);
 }
 
-const buildLines = width => (lines, word) => {
+const buildLines = (width: number) => (lines: string[], word: string) => {
   if (lines.length === 0) {
     return [word];
   }

@@ -9,8 +9,8 @@ export const afterEach = () => {
 export const timeEndWritesCyanStamp = () => {
   processUtils.freeze();
   const label = 'testing time end';
-  time(label, 'arg1', 'arg2');
-  timeEnd(label, 'arg3', 'arg4');
+  time(label);
+  timeEnd(label);
   if (console.log === log) {
     // added formatting
     expect(standardUtils.writes()).equals([

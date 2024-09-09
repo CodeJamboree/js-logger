@@ -6,7 +6,7 @@ const main = async () => {
   await run({
     testFilePattern: /\.test\.js$/,
     testFileReplacement: '',
-    folderPath: 'src',
+    folderPath: 'build/src',
     beforeEach,
     afterEach,
   })

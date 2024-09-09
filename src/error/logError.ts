@@ -3,7 +3,7 @@ import { logDetails } from "./logDetails.js";
 import { logObjectAsError } from "./logObjectAsError.js";
 import { error } from '../log/error.js';
 
-export const logError = data => {
+export const logError = (data: any) => {
   if (data instanceof Buffer) data = data.toString();
   if (isEmpty(data)) {
     error("Error (Empty)");

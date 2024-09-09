@@ -13,9 +13,9 @@ export const section = (title = '', prefix = '---{ ', suffix = ' }---') => {
   info();
 }
 
-const writeLine = line => info(line);
+const writeLine = (line: string) => info(line);
 
-function decorate(line) {
+function decorate(this: { prefix: string, suffix: string }, line: string) {
   const {
     prefix,
     suffix

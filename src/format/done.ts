@@ -1,7 +1,7 @@
-import { logPerformance } from './logPerformance.js';
+import { performance } from './performance.js';
 import { info } from '../log/info.js';
 
 export const done = () => {
-  logPerformance();
+  performance();
   info(`done`);
 }

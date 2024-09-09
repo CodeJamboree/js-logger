@@ -8,7 +8,7 @@ export const titleNormal = () => {
 
   title("My Title");
 
-  expect(standardUtils.writes(0)).equals([
+  expect(standardUtils.writes()).equals([
     "\u001b[34m----------------------------------------\u001b[39m\n",
     "\u001b[34m                My Title                \u001b[39m\n",
     "\u001b[34m----------------------------------------\u001b[39m\n"
@@ -20,7 +20,7 @@ export const titleWrap = () => {
 
   title("My title".repeat(7));
 
-  expect(standardUtils.writes(0)).equals([
+  expect(standardUtils.writes()).equals([
     "\u001b[34m----------------------------------------\u001b[39m\n",
     "\u001b[34m   My titleMy titleMy titleMy titleMy   \u001b[39m\n",
     "\u001b[34m         titleMy titleMy title          \u001b[39m\n",
@@ -33,7 +33,7 @@ export const titleNothing = () => {
 
   title();
 
-  expect(standardUtils.writes(0)).equals([
+  expect(standardUtils.writes()).equals([
     "\u001b[34m----------------------------------------\u001b[39m\n",
     "\u001b[34m                                        \u001b[39m\n",
     "\u001b[34m----------------------------------------\u001b[39m\n"

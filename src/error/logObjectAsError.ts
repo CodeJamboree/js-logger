@@ -6,7 +6,7 @@ import { error } from '../log/error.js';
 import { group } from '../group/group.js';
 import { groupEnd } from "../group/groupEnd.js";
 
-export const logObjectAsError = (obj) => {
+export const logObjectAsError = (obj: object) => {
 
   if (obj instanceof Date) {
     error(`Error (Date): ${obj.toISOString()}`);
