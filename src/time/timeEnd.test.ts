@@ -12,17 +12,20 @@ export const afterEach = () => {
   processUtils.restore();
 }
 export const timeEndWritesCyanStamp = () => {
-  const label = 'testing time end';
-  time(label);
-  timeEnd(label);
-  if (console.log === log) {
+  const atttached = console.log === log;
+  const distinctLabel = `timeEndWritesCyanStamp: ${atttached ? 'attached' : 'normal'}`;
+
+  time(distinctLabel);
+  timeEnd(distinctLabel);
+
+  if (atttached) {
     // added formatting
     expect(standardUtils.writes()).equals([
-      `\u001b[37m\u001b[36m${label}\u001b[39m: 0ms\u001b[39m\n`
+      `\u001b[37m\u001b[36m${distinctLabel}\u001b[39m: 0ms\u001b[39m\n`
     ]);
   } else {
     expect(standardUtils.writes()).equals([
-      `\u001b[36m${label}\u001b[39m: 0ms\n`
+      `\u001b[36m${distinctLabel}\u001b[39m: 0ms\n`
     ]);
   }
 }

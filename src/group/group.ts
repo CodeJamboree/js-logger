@@ -4,8 +4,9 @@ import { emoji } from "../log/emoji.js";
 import { group as consoleGroup } from '../console/group.js';
 
 export const group = (...label: any[]) => {
-  if (group.length === 0)
+  if (label.length === 0) {
     consoleGroup();
-  else
+  } else {
     colorWith(consoleGroup, emoji.infoBox, ansi.blue)(...label);
+  }
 }
