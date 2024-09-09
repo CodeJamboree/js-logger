@@ -1,9 +1,5 @@
-import logger from '../../src/index.js';
+import { ansi } from './ansi.js';
 import { expect } from '@codejamboree/js-test';
-
-const { ansi } = logger;
-
-export const name = 'ansi';
 
 export const ansiRed = () => {
   expect(ansi.red("Red")).equals("\u001b[31mRed\u001b[39m");

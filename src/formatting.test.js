@@ -1,7 +1,5 @@
-import logger from '../../src/index.js';
+import logger from './index.js';
 import { expect, standardUtils } from '@codejamboree/js-test';
-
-export const name = 'formatting';
 
 export const done = () => {
   logger.done();

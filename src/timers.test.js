@@ -1,4 +1,4 @@
-import logger from '../../src/index.js';
+import { logger } from './logger.js';
 import { expect, standardUtils } from '@codejamboree/js-test';
 
 export const timeNone = () => {

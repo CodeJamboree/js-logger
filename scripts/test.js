@@ -4,9 +4,9 @@ import { run, standardUtils } from '@codejamboree/js-test';
 const main = async () => {
 
   await run({
-    testFilePattern: /\.js$/,
+    testFilePattern: /\.test\.js$/,
     testFileReplacement: '',
-    folderPath: 'scripts/tests',
+    folderPath: 'src',
     beforeEach,
     afterEach,
   })

@@ -1,7 +1,5 @@
-import logger from '../../src/index.js';
+import { logger } from './logger.js';
 import { expect, standardUtils } from '@codejamboree/js-test';
-
-export const name = 'logging';
 
 export const isConsole = () => {
   expect(logger).is(console);
