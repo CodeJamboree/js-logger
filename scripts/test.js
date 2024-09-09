@@ -1,4 +1,4 @@
-import logger from '../src/index.js';
+import { logger } from '../src/index.js';
 import { run, standardUtils } from '@codejamboree/js-test';
 
 const main = async () => {
@@ -21,11 +21,12 @@ const afterEach = () => {
 }
 
 try {
+  logger.attach();
   logger.title('Test');
   main()
-    .catch(logger.onError)
+    .catch(logger.logError)
     .finally(logger.done);
 } catch (e) {
-  logger.onError(e);
+  logger.logError(e);
   logger.done();
 }

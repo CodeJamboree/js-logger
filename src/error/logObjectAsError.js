@@ -2,36 +2,39 @@ import { logDetails } from "./logDetails.js";
 import { logObjectKeysOfInterest } from "./logObjectKeysOfInterest.js";
 import { logError } from "./logError.js";
 import { logObjectKeysAsError } from './logObjectKeysAsError.js';
+import { error } from '../log/error.js';
+import { group } from '../group/group.js';
+import { groupEnd } from "../group/groupEnd.js";
 
 export const logObjectAsError = (obj) => {
 
   if (obj instanceof Date) {
-    console.error(`Error (Date): ${obj.toISOString()}`);
+    error(`Error (Date): ${obj.toISOString()}`);
     return;
   }
 
   if (obj instanceof Promise) {
-    console.error("Error (Promise)");
+    error("Error (Promise)");
     obj.then(logError).catch(logError);
     return;
   }
 
   if (obj instanceof Error) {
-    console.error(obj.message);
+    error(obj.message);
     logObjectKeysOfInterest(obj);
     return;
   }
 
   if (Array.isArray(obj)) {
-    console.log("Error (Array)");
-    console.group();
+    error("Error (Array)");
+    group();
     obj.forEach(logError);
-    console.groupEnd();
+    groupEnd();
     return;
   }
 
   if (!logObjectKeysAsError(obj)) {
-    console.error("Error (Object)");
+    error("Error (Object)");
     logDetails(obj);
   }
 }

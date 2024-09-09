@@ -1,0 +1,1 @@
+export const applyColor = (message, colorizer) => colorizer(message);

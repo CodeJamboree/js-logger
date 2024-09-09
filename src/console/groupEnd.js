@@ -1,0 +1,1 @@
+export const groupEnd = console.groupEnd.bind(console);

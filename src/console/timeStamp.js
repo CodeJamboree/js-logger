@@ -1,0 +1,1 @@
+export const timeStamp = console.timeStamp.bind(console);

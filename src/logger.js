@@ -1,45 +1,50 @@
+import { time } from './time/time.js';
+import { timeEnd } from './time/timeEnd.js';
+import { timeLog } from './time/timeLog.js';
+import { timeStamp } from './time/timeStamp.js';
+
+import { debug } from './log/debug.js';
+import { log } from './log/log.js';
+import { info } from './log/info.js';
+import { warn } from './log/warn.js';
+import { error } from './log/error.js';
+
+import { group } from './group/group.js';
+import { groupEnd } from './group/groupEnd.js';
+
+import { done } from './format/done.js';
+import { section } from './format/section.js';
+import { title } from './format/title.js';
+
+import { logError } from "./error/logError.js";
 import { ansi } from './ansi.js';
 
-const oLog = console.log.bind(console);
-const oTime = console.time.bind(console);
-const oTimeEnd = console.timeEnd.bind(console);
-const oTimeLog = console.timeLog.bind(console);
-const oTimeStamp = console.timeStamp.bind(console);
+import { attach } from './console/attach.js';
+import { restore } from './console/restore.js';
 
-const applyColor = (message, colorizer) => colorizer(message);
+export const logger = {
+  ansi,
 
-const timeLabel = label => applyColor(label, ansi.cyan);
+  attach,
+  restore,
 
-const colorWith = (_prefix, ...colorizers) => (...args) => {
-  if (args.length === 0) {
-    return oLog();
-  }
-  const [message, ...optionalParams] = args;
-  if (typeof message !== 'string') {
-    return oLog(message, ...optionalParams);
-  }
-  return oLog(
-    colorizers.reduce(applyColor, message),
-    ...optionalParams
-  );
+  done,
+  section,
+  title,
+
+  logError,
+
+  debug,
+  log,
+  info,
+  warn,
+  error,
+
+  group,
+  groupEnd,
+
+  time,
+  timeEnd,
+  timeLog,
+  timeStamp
 };
-
-const emoji = {
-  worm: '\ud83d\udc1b',
-  redX: '\u274c',
-  warningSign: '\u26a0\ufe0f',
-  infoBox: '\u2139\ufe0f'
-};
-
-console.debug = colorWith(emoji.worm, ansi.magenta);
-console.log = colorWith('', ansi.white);
-console.info = colorWith(emoji.infoBox, ansi.blue);
-console.warn = colorWith(emoji.warningSign, ansi.yellow);
-console.error = colorWith(emoji.redX, ansi.red);
-
-console.time = label => oTime(timeLabel(label));
-console.timeEnd = label => oTimeEnd(timeLabel(label));
-console.timeLog = (label, ...data) => oTimeLog(timeLabel(label), ...data);
-console.timeStamp = (label) => oTimeStamp(timeLabel(label));
-
-export const logger = console;

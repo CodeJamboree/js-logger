@@ -1,26 +1,27 @@
 import { isEmpty } from "../isEmpty.js";
 import { logDetails } from "./logDetails.js";
 import { logObjectAsError } from "./logObjectAsError.js";
+import { error } from '../log/error.js';
 
 export const logError = data => {
   if (data instanceof Buffer) data = data.toString();
   if (isEmpty(data)) {
-    console.error("Error (Empty)");
+    error("Error (Empty)");
     return;
   }
   switch (typeof data) {
     case 'string':
-      console.error(data);
+      error(data);
       break;
     case 'object':
       logObjectAsError(data);
       break;
     case 'boolean':
     case 'number':
-      console.error(`Error: ${data}`);
+      error(`Error: ${data}`);
       break;
     case 'function':
-      console.error(`Error: (callback: ${data.name})`);
+      error(`Error: (callback: ${data.name})`);
       logDetails(data.toString());
       break;
     default:

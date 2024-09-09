@@ -1,0 +1,1 @@
+export const timeEnd = console.timeEnd.bind(console);

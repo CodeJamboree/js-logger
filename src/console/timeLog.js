@@ -1,0 +1,1 @@
+export const timeLog = console.timeLog.bind(console);

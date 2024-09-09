@@ -1,9 +1,12 @@
 import { isEmpty } from "../isEmpty.js";
+import { debug } from '../log/debug.js';
+import { group } from '../group/group.js';
+import { groupEnd } from "../group/groupEnd.js";
 
 export const logDetails = data => {
   if (data instanceof Buffer) data = data.toString();
   if (isEmpty(data)) return;
-  console.group();
-  console.debug(data);
-  console.groupEnd();
+  group();
+  debug(data);
+  groupEnd();
 }
