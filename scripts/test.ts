@@ -11,17 +11,26 @@ const main = async (isAttached: boolean) => {
     logger.restore();
   }
 
-  await run({
+  return await run({
     testFilePattern: /\.test\.js$/,
     testFileReplacement: '',
-    folderPath: 'build/src'
+    folderPath: 'build/src',
+    randomOrder: true,
+    failFast: true,
+    timeoutMs: 10
   })
 }
 
 try {
   logger.title('Test');
   main(false)
-    .then(async () => await main(true))
+    .then(async (results) => {
+      if (results.failed === 0) {
+        return main(true)
+      } else {
+        throw new Error('Aborting - First test run failed.')
+      }
+    })
     .catch(logger.logError)
     .finally(logger.done);
 } catch (e) {
