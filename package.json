@@ -53,7 +53,7 @@
     "build": "npm run clean && tsc",
     "bundle": "npm run build && npx rollup -c ./build/rollup.config.js",
     "prepublishOnly": "npm run bundle",
-    "test": "npm run build && node ./build/scripts/test.js"
+    "test": "npm run build && node --trace-warnings ./build/scripts/test.js"
   },
   "keywords": [
     "log"
